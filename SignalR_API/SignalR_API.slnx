@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/001 - API/">
+    <Project Path="SignalR_API/SignalR_API.csproj" />
+  </Folder>
+  <Folder Name="/002 - Core/">
+    <Project Path="SignalR_Domains/SignalR_Domains.csproj" />
+    <Project Path="SignalR_Repositories/SignalR_Repositories.csproj" />
+    <Project Path="SignalR_Services/SignalR_Services.csproj" />
+  </Folder>
+  <Folder Name="/003 - Shared/">
+    <Project Path="SignalR_Api.Injection/SignalR_Api.Injection.csproj" />
+  </Folder>
+  <Folder Name="/004 - Tests/">
+    <Project Path="SignalR_Tests/SignalR_Tests.csproj" />
+  </Folder>
+</Solution>

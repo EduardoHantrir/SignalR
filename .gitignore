@@ -1,0 +1,82 @@
+# ========================
+# Node / Angular
+# ========================
+
+# Node modules
+node_modules/
+jspm_packages/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diretórios de build
+dist/
+tmp/
+out-tsc/
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Cache do Angular
+.angular/cache/
+
+# Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Mac
+.DS_Store
+
+# ========================
+# .NET / C# / Visual Studio
+# ========================
+
+# Build Folders
+bin/
+obj/
+[Rr]elease/
+[Dd]ebug/
+x64/
+x86/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.vs/
+*.ntvs_analysis.dat
+
+# Rider
+.idea/
+*.sln.iml
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Package files
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Others
+*.log
+*.vsix
