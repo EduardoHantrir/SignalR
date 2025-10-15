@@ -1,4 +1,4 @@
-﻿]namespace SignalR_Domains.Message
+﻿namespace SignalR_Domains.Message
 {
     public partial class Message
     {

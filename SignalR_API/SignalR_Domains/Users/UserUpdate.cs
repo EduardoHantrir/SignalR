@@ -1,28 +1,39 @@
-﻿namespace SignalR_Domains.User
+﻿using SignalR_Errors;
+
+namespace SignalR_Domains.User
 {
-    public class UserUpdate
+    public partial class User
     {
         public static async Task<User> Update(
             User @this,
             UserParams @params
             )
         {
-            UserValidator.ValidateUpdateParams(@params).Wait();
 
-            if (@params.UserName is not null)
+            await UserValidator.ValidateUpdateParams(@params);
+
+
+            if (@params.UserName != null)
                 @this.UserName = @params.UserName;
-            if (@params.Email is not null)
+
+            if (@params.Email != null)
                 @this.Email = @params.Email;
-            if (@params.Password is not null)
+
+            if (@params.Password != null)
                 @this.Password = @params.Password;
-            if (@params.AvatarUrl is not null)
+
+            if (@params.AvatarUrl != null)
                 @this.AvatarUrl = @params.AvatarUrl;
-            if (@params.Description is not null)
+
+            if (@params.Description != null)
                 @this.Description = @params.Description;
-            if (@params.TimeZoneOffset is not null)
+
+            if (@params.TimeZoneOffset != null)
                 @this.TimeZoneOffset = (int)@params.TimeZoneOffset;
-            if (@params.IsActive is not null)
+
+            if (@params.IsActive != null)
                 @this.IsActive = (bool)@params.IsActive;
+
             @this.LastUpdatedAt = DateTime.UtcNow;
 
             return await Task.FromResult(@this);

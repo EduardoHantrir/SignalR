@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="8.7.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.20" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -14,6 +16,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SignalR_Domains\SignalR_Domains.csproj" />
+    <ProjectReference Include="..\SignalR_Repositories\SignalR_Repositories.csproj" />
+    <ProjectReference Include="..\SignalR_Services\SignalR_Services.csproj" />
+    <ProjectReference Include="..\SignalR_Settings\SignalR_Settings.csproj" />
   </ItemGroup>
 
 </Project>

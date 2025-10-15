@@ -8,9 +8,13 @@
     <Project Path="SignalR_Services/SignalR_Services.csproj" />
   </Folder>
   <Folder Name="/003 - Shared/">
+    <Project Path="SignalR_Errors/SignalR_Errors.csproj" Id="e039c8df-b7ae-4952-80bc-4411d10162cb" />
+    <Project Path="SignalR_Settings/SignalR_Settings.csproj" Id="11b6e1f9-a8bd-43c2-a756-639a47916bc3" />
+  </Folder>
+  <Folder Name="/004 - Injections/">
     <Project Path="SignalR_Api.Injection/SignalR_Api.Injection.csproj" />
   </Folder>
-  <Folder Name="/004 - Tests/">
+  <Folder Name="/005 - Tests/">
     <Project Path="SignalR_Tests/SignalR_Tests.csproj" />
   </Folder>
 </Solution>

@@ -38,7 +38,6 @@ export class Home implements OnInit {
     this.connection.on("ReceiveMessage", (sender: string, text: string) => {
       this.messages.push({ text, sender });
 
-      // força atualização da view
       this.cd.detectChanges();
     });
 

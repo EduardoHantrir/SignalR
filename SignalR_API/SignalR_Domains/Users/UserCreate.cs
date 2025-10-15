@@ -6,16 +6,18 @@
             UserParams @params
             )
         {
+
             await UserValidator.ValidateCreateParams(@params);
 
             var user = new User
             {
-                UserName = @params.UserName,
-                Email = @params.Email,
-                Password = @params.Password,
+                UserName = @params.UserName!,
+                Email = @params.Email!,
+                Password = @params.Password!,
                 AvatarUrl = @params.AvatarUrl,
                 Description = @params.Description,
-                TimeZoneOffset = (int)@params.TimeZoneOffset,
+                TimeZoneOffset = (int)@params.TimeZoneOffset!,
+                CreatedAt = DateTime.UtcNow,
                 IsActive = true
             };
 
