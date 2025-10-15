@@ -41,7 +41,8 @@ namespace SignalR_API.Controllers
             try
             {
                 var userResult = await _userService.GetUserByIdAsync();
-                return Ok();
+
+                return Ok(Results<UserParams>.SucessResult(userResult));
             }
             catch (ErrorLists ex)
             {
@@ -55,8 +56,9 @@ namespace SignalR_API.Controllers
         {
             try
             {
+                var users = await _userService.GetAllUsersAsync();
 
-                return Ok();
+                return Ok(Results<List<UserParams>>.SucessResult(users));
             }
             catch (ErrorLists ex)
             {
@@ -70,8 +72,9 @@ namespace SignalR_API.Controllers
         {
             try
             {
+                var users = await _userService.SearchUsersAsync(query);
 
-                return Ok();
+                return Ok(Results<List<UserParams>>.SucessResult(users));
             }
             catch (ErrorLists ex)
             {
@@ -85,6 +88,7 @@ namespace SignalR_API.Controllers
             try
             {
                 var user = await _userService.CreateUserAsync(@params);
+
                 return Ok(Results<UserParams>.SucessResult(user));
             }
             catch (ErrorLists ex)
@@ -93,14 +97,15 @@ namespace SignalR_API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         [Authorize]
-        public async Task<IActionResult> UpdateUser()
+        public async Task<IActionResult> UpdateUser(UserParams @params)
         {
             try
             {
+                var updatedUser = await _userService.UpdateUserAsync(@params);
 
-                return Ok();
+                return Ok(Results<UserParams>.SucessResult(updatedUser));
             }
             catch (ErrorLists ex)
             {
@@ -114,8 +119,9 @@ namespace SignalR_API.Controllers
         {
             try
             {
-                var user = await SignalR_Domains.User.User.Create(new SignalR_Domains.User.UserParams());
-                return Ok();
+                var status = await _userService.DeleteUserAsync();
+
+                return Ok(Results<bool>.SucessResult(status));
             }
             catch (ErrorLists ex)
             {

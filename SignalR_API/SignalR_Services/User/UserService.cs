@@ -19,10 +19,19 @@ namespace SignalR_Services.User
             _tokenService = tokenService;
             _userRepository = userRepository;
         }
+
+        private Guid GetUserIdFromToken()
+        {
+            var userId = _tokenService.GetUserIdFromToken();
+            if (userId == Guid.Empty)
+                throw new ErrorLists(new List<string> { "Token inválido." });
+            return userId;
+        }
+
         public async Task<UserParams> GetUserByIdAsync(Guid? userId = null)
         {
             if (userId == Guid.Empty || userId is null)
-                userId = _tokenService.GetUserIdFromToken();
+                userId = GetUserIdFromToken();
 
             var user = await _userRepository.GetUserByIdAsync(userId!.Value);
 
@@ -36,12 +45,20 @@ namespace SignalR_Services.User
 
         public async Task<List<UserParams>> GetAllUsersAsync()
         {
-            return new List<UserParams>();
+            var userId = GetUserIdFromToken();
+
+            var users = await _userRepository.GetAllUsersAsync();
+
+            return users.Select(u => new UserParams(u)).ToList();
         }
 
         public async Task<List<UserParams>> SearchUsersAsync(string query)
         {
-            return new List<UserParams>();
+            var userId = GetUserIdFromToken();
+
+            var users = await _userRepository.GetUsersByFilterAsync(query);
+
+            return users.Select(u => new UserParams(u)).ToList();
         }
 
         public async Task<UserParams> CreateUserAsync(UserParams @params)
@@ -53,16 +70,22 @@ namespace SignalR_Services.User
             return new UserParams(user);
         }
 
-        public async Task<UserParams> UpdateUserAsync(Guid userId, UserParams @params)
+        public async Task<UserParams> UpdateUserAsync(UserParams @params)
         {
-            var existingUser = new SignalR_Domains.User.User();
+            var userId = GetUserIdFromToken();
+
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
+
             var updatedUser = await SignalR_Domains.User.User.Update(existingUser, @params);
+
             return new UserParams(updatedUser);
         }
 
-        public async Task<bool> DeleteUserAsync(Guid userId)
+        public async Task<bool> DeleteUserAsync()
         {
-            return true;
+            var userId = _tokenService.GetUserIdFromToken();
+
+            return await _userRepository.DeleteUserAsync(userId);
         }
     }
 }

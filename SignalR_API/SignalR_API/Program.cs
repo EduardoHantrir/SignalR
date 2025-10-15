@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using SignalR_Api.Injection.AuthInjection;
 using SignalR_Api.Injection.User;
 using SignalR_API;
+using SignalR_Settings;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,10 @@ var secret = jwtSettings["Secret"];
 var secretKey = Encoding.UTF8.GetBytes(secret);
 
 var corsPolicyName = "AllowAngularDev";
+
+builder.Services.Configure<DatabaseSettings>(
+    builder.Configuration.GetSection("ConnectionStrings"));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsPolicyName, policy =>

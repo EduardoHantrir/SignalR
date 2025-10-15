@@ -25,14 +25,14 @@ namespace SignalR_Repositories.User
         public async Task<SignalR_Domains.User.User> CreateUserAsync(UserParams @params)
         {
             var user = await SignalR_Domains.User.User.Create(@params);
-            // Here you would typically add code to save the user to a database
+
             return user;
         }
 
         public async Task<SignalR_Domains.User.User> UpdateUserAsync(SignalR_Domains.User.User user, UserParams @params)
         {
             var updatedUser = await SignalR_Domains.User.User.Update(user, @params);
-            // Here you would typically add code to save the updated user to a database
+
             return updatedUser;
         }
 
