@@ -22,6 +22,7 @@ namespace SignalR_API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetUserById(Guid id)
         {
             try
@@ -31,11 +32,12 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
         [HttpGet("me")]
+        [Authorize]
         public async Task<IActionResult> GetMe()
         {
             try
@@ -46,7 +48,7 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
@@ -62,13 +64,13 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
-        [HttpGet("search/{query}")]
+        [HttpGet("search")]
         [Authorize]
-        public async Task<IActionResult> SearchUsers(string query)
+        public async Task<IActionResult> SearchUsers([FromQuery] string query)
         {
             try
             {
@@ -78,11 +80,12 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateUser(UserParams @params)
         {
             try
@@ -93,7 +96,7 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
@@ -109,7 +112,7 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
 
@@ -125,7 +128,7 @@ namespace SignalR_API.Controllers
             }
             catch (ErrorLists ex)
             {
-                return BadRequest(Results<string>.FailureResult(ex.Errors.ToList()));
+                return BadRequest(Results<string>.FailureResult([.. ex.Errors]));
             }
         }
     }

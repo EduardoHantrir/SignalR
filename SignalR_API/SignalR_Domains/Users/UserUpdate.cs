@@ -12,7 +12,6 @@ namespace SignalR_Domains.User
 
             await UserValidator.ValidateUpdateParams(@params);
 
-
             if (@params.UserName != null)
                 @this.UserName = @params.UserName;
 

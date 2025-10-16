@@ -1,20 +1,20 @@
-﻿using Microsoft.Extensions.Options;
-using SignalR_Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace SignalR_Repositories
 {
-    public class DatabaseRepository
+    public class DatabaseRepository : IDatabaseRepository
     {
         private readonly string _connectionString;
 
-        public DatabaseRepository(IOptions<DatabaseSettings> options)
+        public DatabaseRepository(IConfiguration configuration)
         {
-            _connectionString = options.Value.ConnectionString;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+        }
+
+        public SqlConnection GetConnetion()
+        {
+            return new SqlConnection(_connectionString);
         }
     }
 }

@@ -21,8 +21,10 @@
             AvatarUrl = user.AvatarUrl;
             Description = user.Description;
             TimeZoneOffset = user.TimeZoneOffset;
-            CreatedAt = user.CreatedAt;
-            LastUpdatedAt = user.LastUpdatedAt;
+            CreatedAt = DateTime.SpecifyKind((DateTime)user.CreatedAt!, DateTimeKind.Utc)
+                           .AddHours((double)user.TimeZoneOffset!);
+            LastUpdatedAt = DateTime.SpecifyKind((DateTime)user.LastUpdatedAt!, DateTimeKind.Utc)
+                           .AddHours((double)user.TimeZoneOffset!);
             IsActive = user.IsActive;
         }
     }

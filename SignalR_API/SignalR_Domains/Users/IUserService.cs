@@ -8,6 +8,7 @@ namespace SignalR_Domains.Users
         Task<List<UserParams>> GetAllUsersAsync();
         Task<UserParams> GetUserByIdAsync(Guid? userId = null);
         Task<List<UserParams>> SearchUsersAsync(string query);
+        Task<bool> HasEmailRegisterAsync(string email);
         Task<UserParams> UpdateUserAsync(UserParams userParams);
         Task<bool> DeleteUserAsync();
     }

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using SignalR_Domains;
 using SignalR_Domains.Interface;
+using SignalR_Repositories.Auth;
+using SignalR_Services.Auth;
 using SignalR_Settings;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,9 @@ namespace SignalR_Api.Injection.AuthInjection
 
             services.AddHttpContextAccessor();
             services.AddSingleton<ITokenService, TokenService>();
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             return services;
         }

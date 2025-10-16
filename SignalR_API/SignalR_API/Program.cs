@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using SignalR_Api.Injection.AuthInjection;
 using SignalR_Api.Injection.User;
 using SignalR_API;
+using SignalR_Repositories;
 using SignalR_Settings;
 using System.Text;
 
@@ -54,6 +55,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddSignalR();
 
 builder.Services.AddAuthServices(builder.Configuration);
+
+builder.Services.AddScoped<IDatabaseRepository,DatabaseRepository>();
 
 builder.Services.AddUserInjecions();
 
